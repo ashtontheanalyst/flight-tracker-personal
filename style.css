@@ -1,0 +1,9 @@
+body{
+    font-family: Helvetica;
+}
+
+#title{
+    font-size: 3em;
+    text-align: center;
+    font-weight: bold;
+}
