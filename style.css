@@ -1,28 +1,24 @@
+/*Color Constants*/
+:root{
+    --dark-blue: hsl(225, 75%, 20%);
+    --dark-blue-shadow: hsl(225, 75%, 20%, 20%);
+    --light-blue: hsl(225, 75%, 98%);
+    
+    --button-static: hsl(225, 75%, 80%);
+    --button-clicked: hsl(225, 76%, 10%);
+    --button-held: hsl(225, 75%, 25%);
+}
+
 body{
     font-family: Helvetica;
+    color: var(--dark-blue);;
+    background-color: var(--light-blue);
 }
+
+/*This is all for the user input and submit button*/
 #container{
     text-align: center;
     font-size: 2em;
-}
-
-input{
-    font-size: 0.75em;
-    width: 150px;
-    text-align: center;
-    padding: 10px 20px;
-    border-radius: 4px;
-    border: 2px solid black;
-}
-
-label{
-    display: block;
-    font-size: 1em;
-    margin-bottom: 5px;
-}
-
-.inputBox{
-    margin-bottom: 1em;
 }
 
 button{
@@ -30,18 +26,42 @@ button{
     padding: 10px 15px;
     border-radius: 10px;
     border: none;
-    background-color: hsl(225, 75%, 70%);
+    background-color: var(--button-static);
     color: white;
     font-weight: bold;
     cursor: pointer;
+    margin-bottom: 2em;
 }
 
 button:hover{
-    background-color: hsl(225, 75%, 55%);
+    background-color: var(--button-clicked);
     transition: 0.1s;
 }
 
 /*This is what happens when the button is CLICKED*/
 button:active{
-    background-color: hsl(225, 75%, 65%);
+    background-color: var(--button-held);
+}
+
+
+/*Container for all flight boxes*/
+#flights{
+    display: flex;                              /*Allows the boxes of info to be side by side*/
+    justify-content: center;
+    flex-wrap: wrap;                            /*If the amount of boxes exceeds the max width, start on a new line*/
+}
+
+/*These are the inidivudal planes and their information in a box*/
+.indivFlight{
+    font-size: 1.5em;
+    text-align: center;
+    width: 300px;
+    height: 320px;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 2em;
+    border-radius: 15px;
+    color: var(--light-blue);
+    background-color: var(--dark-blue);
+    box-shadow: 5px 5px 15px var(--dark-blue-shadow);
 }

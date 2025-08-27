@@ -22,3 +22,7 @@ https://opensky-network.org/api/states/all?lamin=30.0707&lomin=-97.2864&lamax=31
 ## General Notes:
 - **Latitude:** is the horizontal imaginary lines on the globe, the equator is 0, below is neg. and above is pos.
 - **Longitude:** is the vertical lines, the prime meridian is 0, west (left) is neg. and east (right) is pos.
+
+## Status:
+The site is now tracking data from the OpenSky API within the predetermined box that I have assigned. It
+intakes the data from the API and creates individual flight boxes on the screen.
