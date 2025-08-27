@@ -9,50 +9,65 @@
     --button-held: hsl(225, 75%, 25%);
 }
 
+
+/*Changes your normal HTML elements*/
 body{
     font-family: Helvetica;
     color: var(--dark-blue);;
     background-color: var(--light-blue);
 }
 
-/*This is all for the user input and submit button*/
-#container{
-    text-align: center;
-    font-size: 2em;
+h1{
+    font-size: 4em;
 }
 
-button{
-    font-size: 2rem;
-    padding: 10px 15px;
+
+/*Navigation Button and Container*/
+#navBtn{
+    display: flex;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 50px;
     border-radius: 10px;
     border: none;
-    background-color: var(--button-static);
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
     color: white;
-    font-weight: bold;
+    background-color: var(--button-static);
     cursor: pointer;
-    margin-bottom: 2em;
 }
 
-button:hover{
+#navBtn:hover{
     background-color: var(--button-clicked);
-    transition: 0.1s;
 }
 
-/*This is what happens when the button is CLICKED*/
-button:active{
-    background-color: var(--button-held);
+#navContainer{
+    display: flex;
+    justify-content: center;
 }
 
 
-/*Container for all flight boxes*/
+/*General centered container for a DIV*/
+#container{
+    text-align: center;
+}
+
+
+/*Container for ALL flight boxes, allows the indiv boxes to be in line and spaced with one another*/
 #flights{
     display: flex;                              /*Allows the boxes of info to be side by side*/
     justify-content: center;
     flex-wrap: wrap;                            /*If the amount of boxes exceeds the max width, start on a new line*/
+    margin-top: 2em;
 }
 
-/*These are the inidivudal planes and their information in a box*/
-.indivFlight{
+/*These are the inidivudal flights and their information in a box*/
+.iFlight{
     font-size: 1.5em;
     text-align: center;
     width: 300px;
@@ -64,4 +79,12 @@ button:active{
     color: var(--light-blue);
     background-color: var(--dark-blue);
     box-shadow: 5px 5px 15px var(--dark-blue-shadow);
+}
+
+
+#map{
+    height: 600px;
+    margin-top: 1em;
+    border: 2px solid black;
+    border-radius: 10px;
 }
