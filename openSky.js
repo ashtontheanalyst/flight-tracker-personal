@@ -1,11 +1,21 @@
 // Personal Flight Tracker Using OpenSky API
 
-// This is our site logic, this all kicks off when we click the 'See Flights' button
+// Fetch credentials from our local JSON file containing it
+let USER;
+let PASS;
+
+fetch('credentials.json') 
+  .then(response => response.json())
+  .then(data => {
+    USER = data.clientId;
+    PASS = data.clientSecret;
+  })
+  .catch(error => console.error("Error fetching Credentials:", error));
+
+
+// When 'See Flights' is CLICKED, do this...
 function callAPI() {
   // CONSTANTS
-  let USER;
-  let PASS;
-
   const LAMIN = document.getElementById("lamin").value;
   const LOMIN = document.getElementById("lomin").value;
   const LAMAX = document.getElementById("lamax").value;
@@ -14,17 +24,6 @@ function callAPI() {
   const BASE = "https://opensky-network.org/api";
   const ALLSTATES = "/states/all";
   const FULLURL = BASE + ALLSTATES + `?lamin=${LAMIN}&lomin=${LOMIN}&lamax=${LAMAX}&lomax=${LOMAX}`;
-
-
-  // Fetch credentials. This function looks at that local file, gets the body in JSON, and assigns the
-  // values from the JSON to our variables. We have an error statement in case of one.
-  fetch('credentials.json') 
-    .then(response => response.json())
-    .then(data => {
-      USER = data.clientId;
-      PASS = data.clientSecret;
-    })
-    .catch(error => console.error("Error fetching Credentials:", error));
 
 
   // Function for the OpenSky API, it returns an array of the flights with a ton of data in browser console
@@ -43,7 +42,6 @@ function callAPI() {
     // console.log(data.states[x][x])         Returns the specific piece of data from aircraft at index x
     console.log(data.states[0]);
   }
-
 
   // Call API function
   //openCall();
