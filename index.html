@@ -7,7 +7,32 @@
     <link rel="stylesheet" href="style.css"><!--CSS-->
 </head>
 <body>
-    <h1 id="title">Simple Flight Tracker</h1>
+    <!--User input for geographical boundary box, find aircraft in this box using API-->
+    <div id="container">
+        <h1>Flight Tracker Using OpenSky</h1>
+        
+        <div class="inputBox">
+            <label>Latitude Min:</label>
+            <input type="number" id="lamin">
+        </div>
+
+        <div class="inputBox">
+            <label>Longitude Min:</label>
+            <input type="number" id="lomin">
+        </div>
+
+        <div class="inputBox">
+            <label>Latitude Max:</label>
+            <input type="number" id="lamax">
+        </div>
+
+        <div class="inputBox">
+            <label>Longitude Max:</label>
+            <input type="number" id="lomax">
+        </div>
+
+        <button onclick="callAPI()">See Flights</button>
+    </div>
 
     <script src="openSky.js"></script><!--JS-->
 </body>

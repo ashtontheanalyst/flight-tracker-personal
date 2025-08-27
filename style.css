@@ -1,9 +1,47 @@
 body{
     font-family: Helvetica;
 }
-
-#title{
-    font-size: 3em;
+#container{
     text-align: center;
+    font-size: 2em;
+}
+
+input{
+    font-size: 0.75em;
+    width: 150px;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 2px solid black;
+}
+
+label{
+    display: block;
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+
+.inputBox{
+    margin-bottom: 1em;
+}
+
+button{
+    font-size: 2rem;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: hsl(225, 75%, 70%);
+    color: white;
     font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: hsl(225, 75%, 55%);
+    transition: 0.1s;
+}
+
+/*This is what happens when the button is CLICKED*/
+button:active{
+    background-color: hsl(225, 75%, 65%);
 }
