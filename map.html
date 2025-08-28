@@ -14,7 +14,11 @@
     <!--For Importing Leaflet JS-->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
+        crossorigin="">
+    </script>
+
+    <!--This GitHub pacakge adds onto Leaflet to let us rotate the images-->
+    <script src="https://rawcdn.githack.com/bbecquet/Leaflet.RotatedMarker/master/leaflet.rotatedMarker.js"></script>
 </head>
 <body>
     <div id="container">
@@ -30,15 +34,4 @@
     </div>
 
     <script src="index.js"></script><!--JS-->
-
-    <script>
-    // Only call map on this page
-    (async () => {
-        const data = await openCall();
-        if (data && data.states) {
-            makeMap(data);
-        }
-    })();
-    </script>
-</body>
 </html>
