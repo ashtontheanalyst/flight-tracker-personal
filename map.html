@@ -21,16 +21,19 @@
     <script src="https://rawcdn.githack.com/bbecquet/Leaflet.RotatedMarker/master/leaflet.rotatedMarker.js"></script>
 </head>
 <body>
-    <div id="container">
-        <h1>Mapping Flights</h1>
-
-        <div id="navContainer">
-            <a id="navBtn" href="index.html">Flights</a>
-            <a id="navBtn" href="map.html">Map</a>
-        </div>
-
+    <div id="mapContainer">
         <!--This is our Leaflet Map element-->
         <div id="map"></div>
+
+        <!--This is our sidebar-->
+        <div id="sideBar">
+            <h1>Mapping Flights</h1>
+
+            <div id="navContainer">
+                <a id="navBtn" href="index.html">Flights</a>
+                <a id="navBtn" href="map.html">Map</a>
+            </div>
+        </div>
     </div>
 
     <script src="index.js"></script><!--JS-->

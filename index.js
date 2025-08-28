@@ -33,18 +33,6 @@ var planeIcon = L.icon({
 	iconAnchor: [11, 11]
 })
 
-var boundPointIcon = L.icon({
-	iconUrl: 'assets/boundaryIcon.svg',
-	iconSize: [22, 22],
-	iconAnchor: [11, 21]
-})
-
-var BCDCIcon = L.icon({
-	iconUrl: 'assets/BCDCIcon.svg',
-	iconSize: [22, 22],
-	iconAnchor: [11, 21]
-})
-
 
 // DATA: This is the API call to OpenSky that gathers our data object
 async function openCall() {
@@ -60,6 +48,8 @@ async function openCall() {
 				"Authorization": "Basic" + btoa(`${USER}:${PASS}`)
 			}
 		});
+
+		console.log("Authorization header:", "Basic " + btoa(`${USER}:${PASS}`));
 
 		// Gather the data once it resolves from the fetch request then return it
 		const DATA = await response.json();
@@ -142,7 +132,6 @@ async function updateMap() {
 		console.warn("No flight data received");
 		return;
 	} else {
-		console.log("Updated map");
 		makeMap(DATA);
 	}
 }
@@ -158,17 +147,18 @@ function makeMap(DATA) {
 		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			maxZoom: 19,
 			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-		}).addTo(map)
+		}).addTo(map);
 
-		// Points for the boundaries and location of BCDC
-		L.marker([LAMIN, LOMIN], {icon: boundPointIcon}).addTo(map);
-		L.marker([LAMAX, LOMAX], {icon: boundPointIcon}).addTo(map);
+		/* This is a good satellite map!
+		L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}', {
+			maxZoom: 20,
+			attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
+		}).addTo(map);
+		*/
+
+		// Draw the boundary box on the map
 		boundBox = [[LAMIN, LOMIN], [LAMAX, LOMAX]];
-		L.rectangle(boundBox, {color: "#277CE0", weight: 1}).addTo(map);
-
-		// BCDC Location and radius of m
-		L.marker([BCDC_LA, BCDC_LO], {icon: BCDCIcon}).addTo(map);
-		L.circle([BCDC_LA, BCDC_LO], {radius: 20000, color: "#500000"}).addTo(map);
+		L.rectangle(boundBox, {color: "#277CE0", weight: 3}).addTo(map);
 	}
 
 	// Clear old markers if there are some
@@ -182,6 +172,11 @@ function makeMap(DATA) {
 		const long = DATA.states[i][5].toFixed(4);
 		const heading = DATA.states[i][10];
 
+		// This is the text that is in our pop up for the planes
+		const callsign = DATA.states[i][1].trim();
+		const speed = DATA.states[i][9].toFixed(2);
+		let flightInfo = `<pre>${callsign}<br>Speed: ${speed}<br>Dir:   ${heading}<br>Lat:   ${lat}<br>Long:  ${long}</pre>`;
+
 		// If the values are indeed there, then add them to the map and the markers list with our ICON
 		// This is where that GitHub package is used to rotate the plane SVG icon
 		if (lat && long && heading) {
@@ -189,7 +184,9 @@ function makeMap(DATA) {
 				icon: planeIcon,
 				rotationAngle: heading,
 				rotationOrigin: 'center center'
-			}).addTo(map);
+			}).addTo(map)
+				.bindPopup(flightInfo)
+				.openPopup();
 
 			markers.push(marker);
 		}
